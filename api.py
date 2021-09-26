@@ -114,7 +114,7 @@ class API:
         if self.search_command[1] in self.storage.grades:
             students = self.storage.query(self.search_command[1], self.storage.grades)
         else:
-            print("No students found for grade {self.search_command[1]")
+            print(f"No students found for grade {self.search_command[1]}.")
             return
 
         print(f"Student[s] in grade level {self.search_command[1]}:\n")
@@ -130,7 +130,11 @@ class API:
             print("ERROR: invalid parameters for grade search. (G[rade] <number> [H[igh]|L[ow]])\n")
 
     def average_search(self):
-        students = self.storage.query(self.search_command[1], self.storage.grades)
+        if self.search_command[1] in self.storage.grades:
+            students = self.storage.query(self.search_command[1], self.storage.grades)
+        else:
+            print(f"No students found for grade {self.search_command[1]}.")
+            return
 
         if len(self.search_command) == 2:
             print(f"Average GPA for grade {self.search_command[1]}: {self.avg_gpa(students)}\n")
