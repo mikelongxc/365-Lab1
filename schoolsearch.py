@@ -1,8 +1,13 @@
-from cli import CLI
+from api import API
 from storage import Storage
 
 def main():
-    cli = CLI()
+    api = API("students.txt")
+
+    status = api.prompt()
+
+    while status > 0:
+        status = api.prompt()
 
 
 if __name__ == '__main__':
